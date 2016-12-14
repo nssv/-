@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="tradesJob" class="ru.sbt.bit.ood.hw1.TradesJob" init-method="run">
+        <constructor-arg ref="tradeDownloadSample"/>
+        <constructor-arg ref="tradeParseSample"/>
+        <constructor-arg ref="tradeUpdater"/>
+    </bean>
+
+    <bean id="tradesDAO" class="ru.sbt.bit.ood.hw1.TradesDAO"/>
+    <bean id="tradeDownloadSample" class="ru.sbt.bit.ood.hw1.TradeDownloadSample"/>
+    <bean id="tradeParseSample" class="ru.sbt.bit.ood.hw1.TradeParseSample"/>
+
+    <bean id="tradeUpdater" class="ru.sbt.bit.ood.hw1.TradeUpdater">
+        <constructor-arg ref="tradesDAO"/>
+    </bean>
+</beans>

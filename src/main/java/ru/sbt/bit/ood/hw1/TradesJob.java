@@ -6,14 +6,15 @@ public class TradesJob {
     private final DownloadFromSource downloader;
     private final ParseFromSource parser;
 
-    public void run() {
-        String filename = downloader.download();
-        Iterable tradeRecords = parser.parse(filename);
-    }
-
     public TradesJob(TradeUpdater updater, DownloadFromSource downloader, ParseFromSource parser) {
         this.updater = updater;
         this.downloader = downloader;
         this.parser = parser;
+    }
+
+    public void run() {
+        String filename = downloader.download();
+        Iterable<Trade> tradeRecords = parser.parse(filename);
+        updater.updateTrades(tradeRecords);
     }
 }
